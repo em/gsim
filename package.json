@@ -2,7 +2,7 @@
   "main": "index.html",
   "name": "gsim",
   "description": "Gcode Simulator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "keywords": [
     "gcode",
     "simulator"
