@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Gsim</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				margin: 0px;
+				overflow: hidden;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+
+		<script src="lib/three.js"></script>
+		<script src="lib/scene.js"></script>
+		<script src="lib/simulator.js"></script>
+
+    <script>
+    var net = require('net');
+    var path = require('path');
+    var net = require('net');
+    var readline = require('readline');
+
+    var socket = path.join( process.env.PWD, 'bin/socket' );
+    var socket = 9999;
+
+    var client = net.connect(socket, function() { 
+      console.log('client connected');
+    });
+
+    var simulator = new Simulator(scene);
+
+    var rl = readline.createInterface({
+      input: client,
+      output: client
+    });
+
+    rl.on('line', function(gcode) {
+      simulator.add(gcode);
+    });
+    </script>
+
+	</body>
+</html>

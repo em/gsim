@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var net = require('net');
+var exec = require('child_process').spawn;
+var repl = require('repl');
+var readline = require('readline');
+
+
+// This server listens on a Unix socket at /var/run/mysocket
+var unixServer = net.createServer(function(client) {
+  var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.on('line', function(gcode) {
+    client.write(gcode+'\n');
+  });
+});
+
+
+// var socket = path.join(__dirname, '/socket');
+var socket = 9999;
+
+unixServer.listen(socket);
+
+var gui = exec( path.join(__dirname, '../node_modules/.bin/nodewebkit'), [], {
+  cwd: path.join(__dirname, '../')
+});
+
+gui.on('exit', function(code, signal) {
+  process.exit(code);
+});
+
