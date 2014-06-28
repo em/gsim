@@ -21,6 +21,14 @@
 		<script src="lib/simulator.js"></script>
 
     <script>
+
+    // debugging
+    if(process.env.NW_DEBUG) {
+      var gui = require('nw.gui');
+      var win = gui.Window.get();
+      win.showDevTools();
+    }
+
     var net = require('net');
     var path = require('path');
     var net = require('net');
